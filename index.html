@@ -19,6 +19,9 @@
       if('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js');
       }
+      window.addEventListener('appinstalled', (evt) => {
+        window.location.href="app.html";
+      });
     </script>
   </body>
 </html>
