@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>Friends Randomizer (Netflix UK)</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="friends.png">
+    <link rel="apple-touch-startup-image" href="friends.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+  </head>
+  <body>
+    <style>
+      img {
+        max-width: 100%;
+      }
+      .status {
+        display: none;
+      }
+
+      fieldset {
+        display: none;
+      }
+    </style>
+
+    <h1>Friends Randomizer (Netflix UK)</h1>
+    
+    <div class="status">Redirecting...</div>
+    <script>   
+
+      setSource("netflix");
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js?x');
+      }
+      
+      function setSource(source) {
+        localStorage.setItem("source",source);
+        console.log("setting: "+source);
+        fetchEpisodes(source);
+      }
+      
+      function fetchEpisodes(source){
+        fetch(source+'.json')
+        .then(response => response.json())
+        .then(episodes => pickEpisode(episodes, source));
+      }
+      
+      function pickEpisode(episodes, source){  
+        status = document.querySelector(".status"); 
+        status.innerHTML = "Redirecting...";
+        switch(source) {
+          case "hulu":
+            prefix = "https://www.hulu.com/watch/";
+            break;
+          case "prime":
+            prefix = "https://watch.amazon.com/watch?asin=";
+            break;
+          case "netflix":
+            prefix = "https://www.netflix.com/watch/";
+        }
+        
+        item = episodes[Math.floor(Math.random()*episodes.length)];
+        redirectUrl = prefix+item;
+        window.location.href=redirectUrl;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Friends Randomizer</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="friends.png">
+    <link rel="apple-touch-startup-image" href="friends.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+
+  </head>
+  <body>
+    <h1>Friends Randomizer (Netflix UK)</h1>
+
+    You can "install" this page as an app in Chrome, Edge, Firefox or on Android to enable automatic redirection to a random episode.
+    
+    <script>
+    
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
+  </body>
+</html>
