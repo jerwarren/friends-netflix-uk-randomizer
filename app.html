@@ -55,7 +55,11 @@
             prefix = "https://watch.amazon.com/watch?asin=";
             break;
           case "netflix":
-            prefix = "https://www.netflix.com/watch/";
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream){
+                prefix = "nflx://www.netflix.com/watch/";
+            } else {
+                prefix = "https://www.netflix.com/watch/";
+            }
         }
         
         item = episodes[Math.floor(Math.random()*episodes.length)];
