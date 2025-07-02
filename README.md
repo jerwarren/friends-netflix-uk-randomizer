@@ -1,1 +1,1 @@
-# Are-You-Being-Served-Randomizer
+# Friends Randomizer
